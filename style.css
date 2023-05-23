@@ -1,0 +1,464 @@
+/* Tudo */
+* {
+    font-family: 'Poppins', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+/* Tela de erro */
+.error{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 9rem 0;
+  display: flex;
+}
+.error button{
+  background-color: #7cc1e6;
+  color: #f1f1f1;
+  border: none;
+  border-radius: .9375rem ;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+  padding: 1rem;
+  cursor: pointer;
+  transition: 0.5s;
+  margin: 1rem;
+}
+.error button:hover{
+  background-color: #594cee;
+  color: #f1f1f1;
+
+}
+/* Animação de carregamento */
+.pl {
+    margin: 0 auto;
+    display: flex;
+    width: 50vw;
+    height: 50vh;
+    padding: 10rem;
+  }
+
+  .pl__arrows,
+  .pl__ring-rotate,
+  .pl__ring-stroke,
+  .pl__tick {
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+  
+  .pl__arrows {
+    animation-name: arrows42;
+    transform: rotate(45deg);
+    transform-origin: 16px 52px;
+  }
+  
+  .pl__ring-rotate,
+  .pl__ring-stroke {
+    transform-origin: 80px 80px;
+  }
+  
+  .pl__ring-rotate {
+    animation-name: ringRotate42;
+  }
+  
+  .pl__ring-stroke {
+    animation-name: ringStroke42;
+    transform: rotate(-45deg);
+  }
+  
+  .pl__tick {
+    animation-name: tick42;
+  }
+  
+  .pl__tick:nth-child(2) {
+    animation-delay: -1.75s;
+  }
+  
+  .pl__tick:nth-child(3) {
+    animation-delay: -1.5s;
+  }
+  
+  .pl__tick:nth-child(4) {
+    animation-delay: -1.25s;
+  }
+  
+  .pl__tick:nth-child(5) {
+    animation-delay: -1s;
+  }
+  
+  .pl__tick:nth-child(6) {
+    animation-delay: -0.75s;
+  }
+  
+  .pl__tick:nth-child(7) {
+    animation-delay: -0.5s;
+  }
+  
+  .pl__tick:nth-child(8) {
+    animation-delay: -0.25s;
+  }
+  
+  /* Animations */
+  @keyframes arrows42 {
+    from {
+      transform: rotate(45deg);
+    }
+  
+    to {
+      transform: rotate(405deg);
+    }
+  }
+  
+  @keyframes ringRotate42 {
+    from {
+      transform: rotate(0);
+    }
+  
+    to {
+      transform: rotate(720deg);
+    }
+  }
+  
+  @keyframes ringStroke42 {
+    from,
+      to {
+      stroke-dashoffset: 452;
+      transform: rotate(-45deg);
+    }
+  
+    50% {
+      stroke-dashoffset: 169.5;
+      transform: rotate(-180deg);
+    }
+  }
+  
+  @keyframes tick42 {
+    from,
+      3%,
+      47%,
+      to {
+      stroke-dashoffset: -12;
+    }
+  
+    14%,
+      36% {
+      stroke-dashoffset: 0;
+    }
+  }
+/* Apresentação */
+.intro {
+    background: linear-gradient(180deg, #594cee 0%, #8dd0f5 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 100vh;
+}
+#logo {
+    max-width: 20rem;
+    margin-top: 3rem;
+}
+.intro button {
+    background: none;
+    color: #fdfdfd;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-top: 1rem;
+    font-size: 2rem;
+    z-index: 1;
+}
+#clouds {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    animation: floatAnimation 3s ease-in-out infinite;
+}
+@keyframes floatAnimation {
+    0% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(0, 20px);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+}
+
+/* Conteúdo */
+
+.content {
+    background: linear-gradient(180deg, #f5f5f5 40%, #aaaaaa 100%);
+    margin: 0 auto;
+    padding: 9rem 0;
+}
+
+.content p{
+    font-size: 0.9rem;
+}.content span{
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.container{
+    margin: 0 2rem;
+}
+/* Lugar e Unidades*/
+.containerTop{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 2.5rem;
+  color: #f1f1f1;
+  background-color: #434ED9;
+  border-radius: .9375rem;
+  box-shadow: inset 2px 6px 10px #00000071;
+  padding: 1.5rem;
+  flex: 1;
+}
+.allPlaceContainer{
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+}
+.placeContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+}
+.placeContainer span{
+  font-size: 3rem;
+  font-weight: 600;
+}
+.allChangeUnits{
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  flex-direction: column;
+}
+.selectUnits{
+  font-size: 3rem;
+  font-weight: 600;
+}
+#coutry img{
+    width: 6.25rem;
+    height: 6.25rem;
+}
+.containerPlace span{
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 1rem;
+}
+
+/* Containeres de clima atual + localização */
+.containerWeatherSearch {
+    gap: .5rem;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+/* Clima atual */
+.containerLocation {
+    background-color: #439CD9;
+    color: #f1f1f1;
+    padding: 1.5rem;
+    border-radius: .9375rem;
+    box-shadow: inset 2px 5px 10px #00000071;
+    flex: 2;
+}
+
+/* Clima atual - Parte de cima*/
+.containerLocationTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.containerLocationProblem {
+    background-color: #ffffff33;
+    padding: .6rem;
+    border-radius: .9375rem;
+    cursor: pointer;
+}
+
+/* Clima atual - Parte do meio*/
+.containerLocationMiddle {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-top: 1rem;
+}
+.containerLocationWeather {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-right: 1rem;
+}
+.containerLocationWeather img{
+    width: 6.25rem;
+    height: 6.25rem;
+}
+.containerLocationWeather span{
+    font-size: 3rem;
+    font-weight: 600;
+}.containerLocationWeather p{
+    font-size: 3rem;
+    font-weight: 600;
+}
+#description {
+    text-transform: capitalize;
+}
+/* Clima atual - Parte de baixo */
+.containerLocationMoreDescription{
+    display: flex;
+    justify-content: center;
+    align-items: center;;
+    flex-wrap: wrap;
+}
+#squareOrvalhoPoint {
+    border: none;
+}
+.containerLocationMoreDescriptionSquare{
+    padding: 0.7rem;
+}
+.containerLocationMoreDescriptionTitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.moreInfo p{
+    font-weight: 300;
+    font-size: 0.8rem;
+    position: absolute;
+    background-color: #e07f23;
+    padding: .8rem;
+    border-radius: 1rem;
+    visibility: hidden;
+}
+.moreInfoIcon{
+    z-index: 1;
+    cursor: pointer;
+    margin-left: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* Container da pesquisa*/
+.containerSearch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #439CD9;
+    color: #f1f1f1;
+    padding: 1.5rem;
+    border-radius: .9375rem;
+    box-shadow: inset 2px 5px 10px #00000071;
+    flex: 1;
+}
+.containerFormInput {
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 1rem 0;
+    position: relative;
+}
+.containerSearch input{
+    border: none;
+    border-radius: .9375rem;
+    outline: none;
+    padding: 1rem;
+    box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+    flex: 1;
+}
+.containerSearch input:focus{
+    background-color: white;
+    transform: scale(1);
+}
+.containerSearch button{
+    background-color: #434DD9;
+    color: #f1f1f1;
+    border: none;
+    border-radius: 0 .9375rem .9375rem 0;
+    box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+    padding: 1rem;
+    cursor: pointer;
+    transition: 0.5s;
+    position: absolute;
+    right: 0;
+    height: 100%;   
+}
+.containerSearch button:hover{
+    background-color: #132c3a;
+    color: #f1f1f1;
+}
+
+/* Container da previsão */
+
+/* Parte de cima (título e link) */
+.containerForecastTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #132c3a;
+    text-transform: uppercase;
+    margin-top: 1.5rem;
+}
+.containerForecastTop p{
+    font-size: 1rem;
+    font-weight: 600;
+}
+.containerForecastTop a{
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Parte debaixo */
+.containerForecastBottom {
+  display: flex;
+  margin: 1.5rem 0;
+  position: relative;
+}
+.forecastGallery {
+  display: flex;
+  flex-flow: nowrap;
+  gap: 1rem;
+  overflow-x: hidden;
+}
+.itemForecast {
+  border: none;
+  cursor: pointer;
+  padding: 1.5rem;
+  background-color: #434ED9;
+  border-radius: .9375rem;
+  box-shadow: inset 2px 6px 10px #00000071;
+  color: #f1f1f1;
+}
+.current-item {
+  background-color: #2e37aa;
+}
+.itemContent {
+    display: flex;
+    flex-direction: column;
+}
+.forecastWeather {
+  display: flex;
+  align-items: center;
+}
+.forecastWeatherDesc {
+  gap: 2rem;
+  display: flex;
+  text-align: right;
+}
+.hide {
+  display: none;
+}

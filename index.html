@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="icon" type="image/png" href="img/weather-icon.svg" />
+    <title>Weather Now</title>
+  </head>
+  <body>
+    <section class="introduction">
+      <!-- Apresentação -->
+      <div class="intro">
+        <img src="./img/logoweather.svg" id="logo" />
+        <button id="nextDivBtn">
+          <i class="fa-solid fa-arrow-down"></i>
+        </button>
+        <img src="./img/clouds.svg" id="clouds" />
+      </div>
+    </section>
+    <section class="content">
+      <div class="loading hide">
+        <svg
+          class="pl"
+          viewBox="0 0 160 160"
+          width="160px"
+          height="160px"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#000"></stop>
+              <stop offset="100%" stop-color="#fff"></stop>
+            </linearGradient>
+            <mask id="mask1">
+              <rect
+                x="0"
+                y="0"
+                width="160"
+                height="160"
+                fill="url(#grad)"
+              ></rect>
+            </mask>
+            <mask id="mask2">
+              <rect
+                x="28"
+                y="28"
+                width="104"
+                height="104"
+                fill="url(#grad)"
+              ></rect>
+            </mask>
+          </defs>
+
+          <g>
+            <g class="pl__ring-rotate">
+              <circle
+                class="pl__ring-stroke"
+                cx="80"
+                cy="80"
+                r="72"
+                fill="none"
+                stroke="hsl(223,90%,55%)"
+                stroke-width="16"
+                stroke-dasharray="452.39 452.39"
+                stroke-dashoffset="452"
+                stroke-linecap="round"
+                transform="rotate(-45,80,80)"
+              ></circle>
+            </g>
+          </g>
+          <g mask="url(#mask1)">
+            <g class="pl__ring-rotate">
+              <circle
+                class="pl__ring-stroke"
+                cx="80"
+                cy="80"
+                r="72"
+                fill="none"
+                stroke="hsl(193,90%,55%)"
+                stroke-width="16"
+                stroke-dasharray="452.39 452.39"
+                stroke-dashoffset="452"
+                stroke-linecap="round"
+                transform="rotate(-45,80,80)"
+              ></circle>
+            </g>
+          </g>
+
+          <g>
+            <g
+              stroke-width="4"
+              stroke-dasharray="12 12"
+              stroke-dashoffset="12"
+              stroke-linecap="round"
+              transform="translate(80,80)"
+            >
+              <polyline
+                class="pl__tick"
+                stroke="hsl(223,10%,90%)"
+                points="0,2 0,14"
+                transform="rotate(-135,0,0) translate(0,40)"
+              ></polyline>
+              <polyline
+                class="pl__tick"
+                stroke="hsl(223,10%,90%)"
+                points="0,2 0,14"
+                transform="rotate(-90,0,0) translate(0,40)"
+              ></polyline>
+              <polyline
+                class="pl__tick"
+                stroke="hsl(223,10%,90%)"
+                points="0,2 0,14"
+                transform="rotate(-45,0,0) translate(0,40)"
+              ></polyline>
+              <polyline
+                class="pl__tick"
+                stroke="hsl(223,10%,90%)"
+                points="0,2 0,14"
+                transform="rotate(0,0,0) translate(0,40)"
+              ></polyline>
+              <polyline
+                class="pl__tick"
+                stroke="hsl(223,10%,90%)"
+                points="0,2 0,14"
+                transform="rotate(45,0,0) translate(0,40)"
+              ></polyline>
+              <polyline
+                class="pl__tick"
+                stroke="hsl(223,10%,90%)"
+                points="0,2 0,14"
+                transform="rotate(90,0,0) translate(0,40)"
+              ></polyline>
+              <polyline
+                class="pl__tick"
+                stroke="hsl(223,10%,90%)"
+                points="0,2 0,14"
+                transform="rotate(135,0,0) translate(0,40)"
+              ></polyline>
+              <polyline
+                class="pl__tick"
+                stroke="hsl(223,10%,90%)"
+                points="0,2 0,14"
+                transform="rotate(180,0,0) translate(0,40)"
+              ></polyline>
+            </g>
+          </g>
+          <g mask="url(#mask1)">
+            <g
+              stroke-width="4"
+              stroke-dasharray="12 12"
+              stroke-dashoffset="12"
+              stroke-linecap="round"
+              transform="translate(80,80)"
+            >
+              <polyline
+                class="pl__tick"
+                stroke="hsl(223,90%,80%)"
+                points="0,2 0,14"
+                transform="rotate(-135,0,0) translate(0,40)"
+              ></polyline>
+              <polyline
+                class="pl__tick"
+                stroke="hsl(223,90%,80%)"
+                points="0,2 0,14"
+                transform="rotate(-90,0,0) translate(0,40)"
+              ></polyline>
+              <polyline
+                class="pl__tick"
+                stroke="hsl(223,90%,80%)"
+                points="0,2 0,14"
+                transform="rotate(-45,0,0) translate(0,40)"
+              ></polyline>
+              <polyline
+                class="pl__tick"
+                stroke="hsl(223,90%,80%)"
+                points="0,2 0,14"
+                transform="rotate(0,0,0) translate(0,40)"
+              ></polyline>
+              <polyline
+                class="pl__tick"
+                stroke="hsl(223,90%,80%)"
+                points="0,2 0,14"
+                transform="rotate(45,0,0) translate(0,40)"
+              ></polyline>
+              <polyline
+                class="pl__tick"
+                stroke="hsl(223,90%,80%)"
+                points="0,2 0,14"
+                transform="rotate(90,0,0) translate(0,40)"
+              ></polyline>
+              <polyline
+                class="pl__tick"
+                stroke="hsl(223,90%,80%)"
+                points="0,2 0,14"
+                transform="rotate(135,0,0) translate(0,40)"
+              ></polyline>
+              <polyline
+                class="pl__tick"
+                stroke="hsl(223,90%,80%)"
+                points="0,2 0,14"
+                transform="rotate(180,0,0) translate(0,40)"
+              ></polyline>
+            </g>
+          </g>
+
+          <g>
+            <g transform="translate(64,28)">
+              <g class="pl__arrows" transform="rotate(45,16,52)">
+                <path
+                  fill="hsl(3,90%,55%)"
+                  d="M17.998,1.506l13.892,43.594c.455,1.426-.56,2.899-1.998,2.899H2.108c-1.437,0-2.452-1.473-1.998-2.899L14.002,1.506c.64-2.008,3.356-2.008,3.996,0Z"
+                ></path>
+                <path
+                  fill="hsl(223,10%,90%)"
+                  d="M14.009,102.499L.109,58.889c-.453-1.421,.559-2.889,1.991-2.889H29.899c1.433,0,2.444,1.468,1.991,2.889l-13.899,43.61c-.638,2.001-3.345,2.001-3.983,0Z"
+                ></path>
+              </g>
+            </g>
+          </g>
+          <g mask="url(#mask2)">
+            <g transform="translate(64,28)">
+              <g class="pl__arrows" transform="rotate(45,16,52)">
+                <path
+                  fill="hsl(333,90%,55%)"
+                  d="M17.998,1.506l13.892,43.594c.455,1.426-.56,2.899-1.998,2.899H2.108c-1.437,0-2.452-1.473-1.998-2.899L14.002,1.506c.64-2.008,3.356-2.008,3.996,0Z"
+                ></path>
+                <path
+                  fill="hsl(223,90%,80%)"
+                  d="M14.009,102.499L.109,58.889c-.453-1.421,.559-2.889,1.991-2.889H29.899c1.433,0,2.444,1.468,1.991,2.889l-13.899,43.61c-.638,2.001-3.345,2.001-3.983,0Z"
+                ></path>
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="error hide">
+        <h1>Não foi possível encontrar informações</h1>
+        <button>Tentar novamente</button>
+      </div>
+      <!-- Conteúdo -->
+      <div class="container">
+        <div class="containerTop">
+          <div class="allPlaceContainer">
+            <p>Local detectado</p>
+            <div class="placeContainer">
+              <span id="place">Rio Branco</span>
+              <img
+                src="https://flagsapi.com/BR/flat/64.png"
+                id="country"
+                alt="Bandeira do país"
+              />
+            </div>
+          </div>
+          <div class="allChangeUnits">
+            <p>Configuração do clima</p>
+            <div class="changeUnits">
+              <select class="selectUnitsF">
+                <option value="celsius">°C</option>
+                <option value="fahrenheit">°F</option>
+                <option value="kevin">°K</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="containerWeatherSearch">
+          <!-- Clima atual -->
+          <div class="containerLocation">
+            <div class="containerLocationTop">
+              <div class="containerLocationTime">
+                <p>Clima atual</p>
+                <span id="time"></span>
+              </div>
+              <div class="containerLocationProblem">
+                <p>
+                  <i class="fa-regular fa-message"></i> Está vendo um clima
+                  diferente?
+                </p>
+              </div>
+            </div>
+
+            <div class="containerLocationMiddle">
+              <div class="containerLocationWeather">
+                <img
+                  src="https://openweathermap.org/img/wn/02d@2x.png"
+                  id="weather-icon"
+                  alt="Condições do tempo"
+                />
+                <span id="temperature">32°</span>
+              </div>
+              <div class="containerLocationDescription">
+                <span id="description">Maioria nublado</span>
+                <p>Sensação térmica:</p>
+                <span id="feelsLike">38°</span>
+              </div>
+            </div>
+
+            <div class="containerLocationMoreDescription">
+              <div
+                class="containerLocationMoreDescriptionSquare"
+                id="squareAirQuality"
+              >
+                <div class="containerLocationMoreDescriptionTitle">
+                  <p>Qualidade do ar</p>
+                  <div class="moreInfo">
+                    <img src="./img/info.svg" class="moreInfoIcon" />
+                    <p>
+                      Boa qualidade do ar (0-50)<br />
+                      Poluente principal PM2.5 9.2gm/m³
+                    </p>
+                  </div>
+                </div>
+                <div class="containerLocationMoreDescriptionAnswer">
+                  <i class="fa-solid fa-circle"></i>
+                  <span>42</span>
+                </div>
+              </div>
+              <div
+                class="containerLocationMoreDescriptionSquare"
+                id="squareWind"
+              >
+                <div class="containerLocationMoreDescriptionTitle">
+                  <p>Vento</p>
+                  <div class="moreInfo">
+                    <img src="./img/info.svg" class="moreInfoIcon" />
+                    <p>
+                      Vento leve (2km - 5km/h) <br />
+                      Direção mostrada pelo desvio de <br />fumaça, mas não
+                      pelos cata-ventos
+                    </p>
+                  </div>
+                </div>
+                <div class="containerLocationMoreDescriptionAnswer">
+                  <span id="wind">8 km/h</span>
+                </div>
+              </div>
+              <div
+                class="containerLocationMoreDescriptionSquare"
+                id="squareHumidity"
+              >
+                <div class="containerLocationMoreDescriptionTitle">
+                  <p>Umidade</p>
+                  <div class="moreInfo">
+                    <img src="./img/info.svg" class="moreInfoIcon" />
+                    <p>
+                      Quantidade de umidade presente no <br />
+                      ar em direção à quantidade máxima <br />
+                      de umidade que o ar pode conter na <br />
+                      temperatura atual
+                    </p>
+                  </div>
+                </div>
+                <div class="containerLocationMoreDescriptionAnswer">
+                  <span id="humidity">67%</span>
+                </div>
+              </div>
+              <div
+                class="containerLocationMoreDescriptionSquare"
+                id="squareVisibility"
+              >
+                <div class="containerLocationMoreDescriptionTitle">
+                  <p>Visibilidade</p>
+                  <div class="moreInfo">
+                    <img src="./img/info.svg" class="moreInfoIcon" />
+                    <p>Boa visibilidade (5 - 10 km)</p>
+                  </div>
+                </div>
+                <div class="containerLocationMoreDescriptionAnswer">
+                  <span id="visibility">10 km</span>
+                </div>
+              </div>
+              <div
+                class="containerLocationMoreDescriptionSquare"
+                id="squarePressure"
+              >
+                <div class="containerLocationMoreDescriptionTitle">
+                  <p>Pressão</p>
+                  <div class="moreInfo">
+                    <img src="./img/info.svg" class="moreInfoIcon" />
+                    <p>
+                      Pressão é o peso do ar na <br />
+                      atmofesra. Ele é normalizado para a <br />pressão média de
+                      1.013.25 mb <br />(29,9212 inHg). A pressão mais alta
+                      <br />
+                      geralmente é associada ao clima de <br />sol, pressão mais
+                      baixa com clima de <br />
+                      tempestade
+                    </p>
+                  </div>
+                </div>
+                <div class="containerLocationMoreDescriptionAnswer">
+                  <span id="pressure">1013 mb</span>
+                </div>
+              </div>
+              <div
+                class="containerLocationMoreDescriptionSquare"
+                id="squareOrvalhoPoint"
+              >
+                <div class="containerLocationMoreDescriptionTitle">
+                  <p>Ponto de orvalho</p>
+                  <div class="moreInfo">
+                    <img src="./img/info.svg" class="moreInfoIcon" />
+                    <p>
+                      A temperatura na qual o ar precisa <br />
+                      ser resfriado para que seja <br />condensado, por exemplo,
+                      como <br />orvalho. Quanto maior o ponto de <br />
+                      orvalho, mais "abafado" ele parece
+                    </p>
+                  </div>
+                </div>
+                <div class="containerLocationMoreDescriptionAnswer">
+                  <span>25</span>&deg;
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pesquisa -->
+          <div class="containerSearch">
+            <div class="containerForm">
+              <h3>Confira o clima de outro lugar:</h3>
+              <div class="containerFormInput">
+                <input type="text" id="place-input" />
+                <button id="searchBtn">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Previsão -->
+        <div class="containerForecast">
+          <div class="containerForecastTop">
+            <p>Previsão de 10 dias</p>
+            <a src=""
+              >Confira a previsão mensal
+              <icon class="fa-solid fa-arrow-right"></icon
+            ></a>
+          </div>
+          <div class="containerForecastBottom">
+            <button class="controlCarousel leftBtn">
+              <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <div class="forecastGallery">
+              <button class="itemForecast current-item">
+                <div class="itemContent">
+                  <span id="forecastDay">Hoje</span>
+                  <div class="forecastWeather">
+                    <img
+                      src="https://openweathermap.org/img/wn/01d@2x.png"
+                      alt="Ilustração do tempo"
+                    />
+                    <div class="forecastWeatherDesc">
+                      <div class="forecastMaxMin">
+                        <span id="forescastMax">38°</span>
+                        <span id="forescastMin">35°</span>
+                      </div>
+                      <div class="forecastMoreDesc">
+                        <span id="forecastDesc">Ensolarado</span>
+                        <p>
+                          <i class="fa-solid fa-umbrella"></i
+                          ><span id="forecastRain">50%</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </button>
+              <button class="itemForecast">
+                <div class="itemContent">
+                  <span id="forecastDay">Hoje</span>
+                  <div class="forecastWeather">
+                    <img
+                      src="https://openweathermap.org/img/wn/01d@2x.png"
+                      alt="Ilustração do tempo"
+                    />
+                    <div class="forecastWeatherDesc">
+                      <div class="forecastMaxMin">
+                        <span id="forescastMax">38°</span>
+                        <span id="forescastMin">35°</span>
+                      </div>
+                      <div class="forecastMoreDesc hide">
+                        <span id="forecastDesc">Ensolarado</span>
+                        <p>
+                          <i class="fa-solid fa-umbrella"></i
+                          ><span id="forecastRain">50%</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </button>
+              <button class="itemForecast">
+                <div class="itemContent">
+                  <span id="forecastDay">Hoje</span>
+                  <div class="forecastWeather">
+                    <img
+                      src="https://openweathermap.org/img/wn/01d@2x.png"
+                      alt="Ilustração do tempo"
+                    />
+                    <div class="forecastWeatherDesc">
+                      <div class="forecastMaxMin">
+                        <span id="forescastMax">38°</span>
+                        <span id="forescastMin">35°</span>
+                      </div>
+                      <div class="forecastMoreDesc hide">
+                        <span id="forecastDesc">Ensolarado</span>
+                        <p>
+                          <i class="fa-solid fa-umbrella"></i
+                          ><span id="forecastRain">50%</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </button>
+              <button class="itemForecast">
+                <div class="itemContent">
+                  <span id="forecastDay">Hoje</span>
+                  <div class="forecastWeather">
+                    <img
+                      src="https://openweathermap.org/img/wn/01d@2x.png"
+                      alt="Ilustração do tempo"
+                    />
+                    <div class="forecastWeatherDesc">
+                      <div class="forecastMaxMin">
+                        <span id="forescastMax">38°</span>
+                        <span id="forescastMin">35°</span>
+                      </div>
+                      <div class="forecastMoreDesc hide">
+                        <span id="forecastDesc">Ensolarado</span>
+                        <p>
+                          <i class="fa-solid fa-umbrella"></i
+                          ><span id="forecastRain">50%</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </button>
+              <button class="itemForecast">
+                <div class="itemContent">
+                  <span id="forecastDay">Hoje</span>
+                  <div class="forecastWeather">
+                    <img
+                      src="https://openweathermap.org/img/wn/02d@2x.png"
+                      alt="Ilustração do tempo"
+                    />
+                    <div class="forecastWeatherDesc">
+                      <div class="forecastMaxMin">
+                        <span id="forescastMax">38°</span>
+                        <span id="forescastMin">35°</span>
+                      </div>
+                      <div class="forecastMoreDesc hide">
+                        <span id="forecastDesc">Ensolarado</span>
+                        <p>
+                          <i class="fa-solid fa-umbrella"></i
+                          ><span id="forecastRain">50%</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </button>
+              <button class="itemForecast">
+                <div class="itemContent">
+                  <span id="forecastDay">Hoje</span>
+                  <div class="forecastWeather">
+                    <img
+                      src="https://openweathermap.org/img/wn/01d@2x.png"
+                      alt="Ilustração do tempo"
+                    />
+                    <div class="forecastWeatherDesc">
+                      <div class="forecastMaxMin">
+                        <span id="forescastMax">38°</span>
+                        <span id="forescastMin">35°</span>
+                      </div>
+                      <div class="forecastMoreDesc hide">
+                        <span id="forecastDesc">Ensolarado</span>
+                        <p>
+                          <i class="fa-solid fa-umbrella"></i
+                          ><span id="forecastRain">50%</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </button>
+              <button class="itemForecast">
+                <div class="itemContent">
+                  <span id="forecastDay">Hoje</span>
+                  <div class="forecastWeather">
+                    <img
+                      src="https://openweathermap.org/img/wn/01d@2x.png"
+                      alt="Ilustração do tempo"
+                    />
+                    <div class="forecastWeatherDesc">
+                      <div class="forecastMaxMin">
+                        <span id="forescastMax">38°</span>
+                        <span id="forescastMin">35°</span>
+                      </div>
+                      <div class="forecastMoreDesc hide">
+                        <span id="forecastDesc">Ensolarado</span>
+                        <p>
+                          <i class="fa-solid fa-umbrella"></i
+                          ><span id="forecastRain">50%</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </button>
+              <button class="itemForecast">
+                <div class="itemContent">
+                  <span id="forecastDay">Hoje</span>
+                  <div class="forecastWeather">
+                    <img
+                      src="https://openweathermap.org/img/wn/01d@2x.png"
+                      alt="Ilustração do tempo"
+                    />
+                    <div class="forecastWeatherDesc">
+                      <div class="forecastMaxMin">
+                        <span id="forescastMax">38°</span>
+                        <span id="forescastMin">35°</span>
+                      </div>
+                      <div class="forecastMoreDesc hide">
+                        <span id="forecastDesc">Ensolarado</span>
+                        <p>
+                          <i class="fa-solid fa-umbrella"></i
+                          ><span id="forecastRain">50%</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </button>
+              <button class="itemForecast">
+                <div class="itemContent">
+                  <span id="forecastDay">Hoje</span>
+                  <div class="forecastWeather">
+                    <img
+                      src="https://openweathermap.org/img/wn/03d@2x.png"
+                      alt="Ilustração do tempo"
+                    />
+                    <div class="forecastWeatherDesc">
+                      <div class="forecastMaxMin">
+                        <span id="forescastMax">38°</span>
+                        <span id="forescastMin">35°</span>
+                      </div>
+                      <div class="forecastMoreDesc hide">
+                        <span id="forecastDesc">Ensolarado</span>
+                        <p>
+                          <i class="fa-solid fa-umbrella"></i
+                          ><span id="forecastRain">50%</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </button>
+              <button class="itemForecast">
+                <div class="itemContent">
+                  <span id="forecastDay">Hoje</span>
+                  <div class="forecastWeather">
+                    <img
+                      src="https://openweathermap.org/img/wn/01d@2x.png"
+                      alt="Ilustração do tempo"
+                    />
+                    <div class="forecastWeatherDesc">
+                      <div class="forecastMaxMin">
+                        <span id="forescastMax">38°</span>
+                        <span id="forescastMin">35°</span>
+                      </div>
+                      <div class="forecastMoreDesc hide">
+                        <span id="forecastDesc">Ensolarado</span>
+                        <p>
+                          <i class="fa-solid fa-umbrella"></i
+                          ><span id="forecastRain">50%</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </button>
+            </div>
+            <button class="controlCarousel rightBtn">
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
