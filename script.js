@@ -25,8 +25,33 @@ const loading = document.querySelector(".loading");
 const container = document.querySelector(".container");
 const error = document.querySelector(".error");
 
-const itemsCarousel = document.querySelectorAll(".itemForecast");
+const itemForecast = document.querySelectorAll(".itemForecast");
+
+const forecastGallery = document.querySelector(".forecastGallery");
+const controlCarousel = document.querySelectorAll(".controlCarousel");
+const leftBtn = document.querySelector(".leftBtn")
+const rightBtn = document.querySelector(".rightBtn")
+
 //Funções
+function forecastDayUpdate() {
+  const dataAtual = new Date();
+
+  for (let i = 0; i < itemForecast.length; i++) {
+    const itemCarousel = itemForecast[i];
+    const data = new Date();
+    data.setDate(dataAtual.getDate() + i);
+
+    const forecastDay = itemCarousel.getElementsByClassName("forecastDay")[0];
+    if(i === 0) {
+      forecastDay.textContent = "Hoje";
+    } else
+      forecastDay.textContent = data.toLocaleDateString(undefined, {
+        weekday: "short",
+        day: "numeric"
+      });
+    }
+  }
+forecastDayUpdate()
 
 //Aparece/desaparece a tela de carregamento
 function loadingScrean() {
@@ -72,6 +97,17 @@ const showWeatherData = async (place) => {
     humidity.innerText = `${data.main.humidity}%`;
     visibility.innerText = `${data.visibility / 1000} Km`;
     pressure.innerText = `${data.main.pressure} mb`;
+
+    // for (let i = 0; i < itemForecast.length; i++) {
+    //   const itemCarousel = itemForecast[i];
+    //   const forescastMax = itemCarousel.getElementsByClassName("forescastMax")[0];
+    //   const forescastMin = itemCarousel.getElementsByClassName("forescastMin")[0];
+    //   const forecastDesc = itemCarousel.getElementsByClassName("forecastDesc")[0];
+    //   const forecastRain = itemCarousel.getElementsByClassName("forecastRain")[0];
+    //   forescastMax.innerText = `${parseInt(data.main.temp) + 1}°`;
+    
+    // }
+    
     loadingScrean();
   } catch (error) {
     // Tratamento de erro, se necessário
@@ -138,15 +174,17 @@ itemsCarousel.forEach(function (item) {
 });
 
 //Botões de scroll da previsão
-const forecastGallery = document.querySelector(".forecastGallery");
-const controlCarousel = document.querySelectorAll(".controlCarousel");
 
 controlCarousel.forEach(function (control) {
   control.addEventListener("click", (e) => {
     if (control.classList.contains("leftBtn")) {
       forecastGallery.scrollLeft -= forecastGallery.offsetWidth;
+      rightBtn.classList.toggle("hide")
+      leftBtn.classList.toggle("hide")
     } else {
       forecastGallery.scrollLeft += forecastGallery.offsetWidth;
+      leftBtn.classList.toggle("hide")
+      rightBtn.classList.toggle("hide")
     }
 
     forecastGallery.scrollIntoView({ behavior: "smooth" });

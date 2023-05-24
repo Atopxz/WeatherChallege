@@ -1,7 +1,5 @@
-Estilizar o select -> CSS
+Estilizar o option do select -> CSS
 Fazer funcionar as converções -> JS
-Estilizar butões do scroll de previsões -> CSS
 Deixar o scroll de previsões mais suave -> CSS/JS
-Adicionar função de dias/dias da semana -> JS
 Fazer uma gambiarra pra simular infos da previsão do tempo -> JS
 Fazer um footer -> HTML/CSS
