@@ -1,5 +1,5 @@
-Estilizar o option do select -> CSS
+Estilizar o option do select -> CSS (comentado)
 Fazer funcionar as converções -> JS
 Deixar o scroll de previsões mais suave -> CSS/JS
-Fazer uma gambiarra pra simular infos da previsão do tempo -> JS
+Fazer uma gambiarra pra simular infos da previsão do tempo -> JS (max e min funcionando)
 Fazer um footer -> HTML/CSS

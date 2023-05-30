@@ -268,13 +268,13 @@
               alt="Bandeira do país"
             />
           </div>
-          <div class="changeUnits">
-            <select class="selectUnits">
-              <option value="celsius">°C</option>
-              <option value="fahrenheit">°F</option>
-              <option value="kevin">°K</option>
+          <!-- <div class="changeUnits">
+            <select id="selectUnits">
+              <option value="metric">°C</option>
+              <option value="imperial">°F</option>
+              <option value="standard">°K</option>
             </select>
-          </div>
+          </div> -->
         </div>
         <div class="containerWeatherSearch">
           <!-- Clima atual -->
@@ -443,13 +443,13 @@
         </div>
         <!-- Previsão -->
         <div class="containerForecast">
-          <div class="containerForecastTop">
+          <!-- <div class="containerForecastTop">
             <p>Previsão de 10 dias</p>
             <a src=""
               >Confira a previsão mensal
               <icon class="fa-solid fa-arrow-right"></icon
             ></a>
-          </div>
+          </div> -->
           <div class="containerForecastBottom">
             <button class="controlCarousel leftBtn hide">
               <i class="fa-solid fa-arrow-left"></i>
@@ -567,7 +567,7 @@
                       <div class="forecastMoreDesc hide">
                         <span class="forecastDesc">Ensolarado</span>
                         <p>
-                          <i class="fa-solclass fa-umbrella"></i
+                          <i class="fa-solid fa-umbrella"></i
                           ><span class="forecastRain">50%</span>
                         </p>
                       </div>
@@ -615,7 +615,7 @@
                       <div class="forecastMoreDesc hide">
                         <span class="forecastDesc">Ensolarado</span>
                         <p>
-                          <i class="fa-solis fa-umbrella"></i
+                          <i class="fa-solid fa-umbrella"></i
                           ><span class="forecastRain">50%</span>
                         </p>
                       </div>
@@ -678,6 +678,7 @@
                     <img
                       src="https://openweathermap.org/img/wn/01d@2x.png"
                       alt="Ilustração do tempo"
+                      class="forecastImg"
                     />
                     <div class="forecastWeatherDesc">
                       <div class="forecastMaxMin">
@@ -702,8 +703,6 @@
           </div>
         </div>
       </div>
-      <footer>
-      </footer>
     </section>
   </body>
 </html>

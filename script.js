@@ -1,4 +1,6 @@
 //Variáveis
+
+
 const apiKey = "e5d547c492fae17ae940736320bb6a74";
 const apiCountryURL = "https://flagsapi.com/.png";
 
@@ -29,8 +31,8 @@ const itemForecast = document.querySelectorAll(".itemForecast");
 
 const forecastGallery = document.querySelector(".forecastGallery");
 const controlCarousel = document.querySelectorAll(".controlCarousel");
-const leftBtn = document.querySelector(".leftBtn")
-const rightBtn = document.querySelector(".rightBtn")
+const leftBtn = document.querySelector(".leftBtn");
+const rightBtn = document.querySelector(".rightBtn");
 
 //Funções
 function forecastDayUpdate() {
@@ -42,16 +44,16 @@ function forecastDayUpdate() {
     data.setDate(dataAtual.getDate() + i);
 
     const forecastDay = itemCarousel.getElementsByClassName("forecastDay")[0];
-    if(i === 0) {
+    if (i === 0) {
       forecastDay.textContent = "Hoje";
     } else
       forecastDay.textContent = data.toLocaleDateString(undefined, {
         weekday: "short",
-        day: "numeric"
+        day: "numeric",
       });
-    }
   }
-forecastDayUpdate()
+}
+forecastDayUpdate();
 
 //Aparece/desaparece a tela de carregamento
 function loadingScrean() {
@@ -98,16 +100,11 @@ const showWeatherData = async (place) => {
     visibility.innerText = `${data.visibility / 1000} Km`;
     pressure.innerText = `${data.main.pressure} mb`;
 
-    // for (let i = 0; i < itemForecast.length; i++) {
-    //   const itemCarousel = itemForecast[i];
-    //   const forescastMax = itemCarousel.getElementsByClassName("forescastMax")[0];
-    //   const forescastMin = itemCarousel.getElementsByClassName("forescastMin")[0];
-    //   const forecastDesc = itemCarousel.getElementsByClassName("forecastDesc")[0];
-    //   const forecastRain = itemCarousel.getElementsByClassName("forecastRain")[0];
-    //   forescastMax.innerText = `${parseInt(data.main.temp) + 1}°`;
-    
-    // }
-    
+    itemForecast.forEach((item) => {
+      item.querySelector(".forescastMax").innerText = `${parseInt(data.main.temp_max)}°`;
+      item.querySelector(".forescastMin").innerText = `${parseInt(data.main.temp_min)}°`;
+    });
+
     loadingScrean();
   } catch (error) {
     // Tratamento de erro, se necessário
@@ -162,9 +159,9 @@ moreInfoIcons.forEach((icon, index) => {
 });
 
 //Pra mostrar mais informações ao selecionar o dia na previsão do tempo
-itemsCarousel.forEach(function (item) {
+itemForecast.forEach(function (item) {
   item.addEventListener("click", function () {
-    itemsCarousel.forEach(function (iten) {
+    itemForecast.forEach(function (iten) {
       iten.classList.remove("current-item");
       iten.querySelector(".forecastMoreDesc").classList.add("hide");
     });
@@ -174,20 +171,17 @@ itemsCarousel.forEach(function (item) {
 });
 
 //Botões de scroll da previsão
-
 controlCarousel.forEach(function (control) {
   control.addEventListener("click", (e) => {
     if (control.classList.contains("leftBtn")) {
       forecastGallery.scrollLeft -= forecastGallery.offsetWidth;
-      rightBtn.classList.toggle("hide")
-      leftBtn.classList.toggle("hide")
+      rightBtn.classList.toggle("hide");
+      leftBtn.classList.toggle("hide");
     } else {
       forecastGallery.scrollLeft += forecastGallery.offsetWidth;
-      leftBtn.classList.toggle("hide")
-      rightBtn.classList.toggle("hide")
+      leftBtn.classList.toggle("hide");
+      rightBtn.classList.toggle("hide");
     }
-
-    forecastGallery.scrollIntoView({ behavior: "smooth" });
   });
 });
 
